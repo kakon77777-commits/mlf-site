@@ -1,0 +1,21 @@
+// MLF 1.0 site — assets-only Worker on its own evemisslab.com subdomain.
+// Same pattern as mmr.evemisslab.com and mmlc.evemisslab.com: a Worker custom
+// domain provisions its own DNS record, which a Pages custom domain does not.
+//
+//   python build.py
+//   npx wrangler deploy
+{
+  "name": "mlf-site",
+  "compatibility_date": "2026-07-25",
+  "assets": {
+    "directory": "./dist",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page"
+  },
+  "routes": [
+    { "pattern": "mlf.evemisslab.com", "custom_domain": true }
+  ],
+  "observability": {
+    "enabled": true
+  }
+}
